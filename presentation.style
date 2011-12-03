@@ -1,0 +1,21 @@
+{"pageSetup": {
+    "width": "20cm",
+        "height": "11cm",
+        "margin-top": "0cm",
+        "margin-bottom": "0cm",
+        "margin-left": "0cm",
+        "margin-right": "0cm",
+        "margin-gutter": "0cm",
+        "spacing-header": "5mm",
+        "spacing-footer": "5mm",
+        "firstTemplate": "cutePage"
+              },
+    "pageTemplates" : {
+        "cutePage": {
+            "frames": [
+                ["5%", "5%", "90%", "90%"]
+                ],
+            "background" : "./_static/background.pdf"
+        }
+    }
+}
