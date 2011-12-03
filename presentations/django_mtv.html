@@ -1,0 +1,421 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django MTV, django pour les dévelopeurs &mdash; Django de Zéro 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="Django de Zéro 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="Présentations" href="index.html" />
+    <link rel="prev" title="Présentations" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Présentations"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="../index.html">Django de Zéro 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Présentations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-mtv-django-pour-les-developeurs">
+<h1>Django MTV, django pour les dévelopeurs<a class="headerlink" href="#django-mtv-django-pour-les-developeurs" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">La Documentation en ligne et la veille technologique seront un point
+central de votre workflow</p>
+</div>
+<div class="section" id="l-architechture-logicielle">
+<h2>L&#8217;architechture logicielle<a class="headerlink" href="#l-architechture-logicielle" title="Lien permanent vers ce titre">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><em>MVC</em></th>
+<th class="head"><em>Django</em></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Model</td>
+<td>Model</td>
+</tr>
+<tr class="row-odd"><td>View</td>
+<td>Template</td>
+</tr>
+<tr class="row-even"><td>Controler</td>
+<td>View</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fichiers-du-projet">
+<h2>Fichiers du projet<a class="headerlink" href="#fichiers-du-projet" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="base">
+<h3>Base<a class="headerlink" href="#base" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>- projet
+  |# __init__.py
+  |# manage.py
+  |# settings.py
+  |# local_settings.py // optionnel
+  |# urls.py
+  |- template
+  | \
+  |  |# base.html
+  |  |+ sub_app</pre>
+</div>
+</div>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>- project
+  |- sub_app
+  | \
+  |  |# __init__.py
+  |  |# admin.py  // optionnel
+  |  |# models.py
+  |  |# tests.py  // optionnel
+  |  |# urls.py
+  |  |# forms.py  // optionnel
+  |  |# views.py
+  |  |- static
+  |  |- template
+  |  | \
+  |  |  |# base.html // optionnel
+  |  |  |+ sub_app</pre>
+</div>
+</div>
+<div class="section" id="media">
+<h3>Media<a class="headerlink" href="#media" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>- project
+  |+ media
+  |- static_root
+  |- static_common
+  | \
+  |  |+ javascript
+  |  |+ css
+  |  |+ images</pre>
+</div>
+<div class="highlight-python"><pre>./manage.py collectstatic</pre>
+</div>
+</div>
+</div>
+<div class="section" id="gestion-du-projet">
+<h2>Gestion du projet<a class="headerlink" href="#gestion-du-projet" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="highlight-python"><pre>django-admin.py startproject &lt;project_name&gt;</pre>
+</div>
+<div class="section" id="settings-py">
+<h3>settings.py<a class="headerlink" href="#settings-py" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>DEBUG
+DATABASES
+{MEDIA/STATIC}_ROOT
+{MEDIA/STATIC}_URL
+INSTALLED_APPS
+ROOT_URLCONF
+SECRET_KEY
+MIDDLEWARE_CLASSES
+TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_DIRS
+LOGGING</pre>
+</div>
+</div>
+<div class="section" id="urls-py">
+<h3>urls.py<a class="headerlink" href="#urls-py" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>from django.conf.urls.defaults import patterns, include, url
+from django.conf import settings
+
+urlpatterns = patterns('',
+    url(r'^my_module$', include('my_module.urls')),)
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P&lt;path&gt;.*)$', 'django.views.static.serve', { #*
+            'document_root': settings.MEDIA_ROOT,})
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()</pre>
+</div>
+</div>
+<div class="section" id="manage-py">
+<h3>manage.py<a class="headerlink" href="#manage-py" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>./manage.py syncdb
+./manage.py runserver
+./manage.py startapp &lt;app_name&gt;
+./manage.py inspectdb
+./manage.py shell
+./manage.py dbshell
+./manage.py help</pre>
+</div>
+</div>
+</div>
+<div class="section" id="les-modeles">
+<h2>les Modèles<a class="headerlink" href="#les-modeles" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="les-backends">
+<h3>Les Backends<a class="headerlink" href="#les-backends" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Backends officiels:
+- PostgreSQL
+- SQLite
+- MySQL
+- Oracle</li>
+<li>Backends tiers:
+- ODBC
+- IBM DB2
+- Firebird
+- SQL Server
+- Sybase</li>
+</ul>
+</div></blockquote>
+<p>..note:</p>
+<div class="highlight-python"><pre>Tant que les regex et le SQL brut ne sont pas utilisés, les backends sont
+interchangeables</pre>
+</div>
+</div>
+<div class="section" id="la-philosophie">
+<h3>La philosophie<a class="headerlink" href="#la-philosophie" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">django.conf.settings.DATABASES</span> <span class="pre">-&gt;</span> <span class="pre">databases</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">django.db.models.Model</span> <span class="pre">-&gt;</span> <span class="pre">DB</span> <span class="pre">Table</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">django.db.models.Field</span> <span class="pre">-&gt;</span> <span class="pre">Column</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">django.db.models.Manager</span> <span class="pre">-&gt;</span> <span class="pre">QuerySet</span></tt></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="les-fields">
+<h3>Les fields<a class="headerlink" href="#les-fields" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>BooleanField</li>
+<li>CharField</li>
+<li>DateTimeField</li>
+<li>FileField</li>
+<li>IntegerField</li>
+<li>EmailField</li>
+<li>ForeignKey</li>
+<li>OneToOneField</li>
+<li>ManyToManyField</li>
+</ul>
+</div></blockquote>
+<p><a href="#id4"><span class="problematic" id="id5">`https://docs.djangoproject.com/en/dev/ref/models/fields/#field-types`_</span></a></p>
+</div>
+<div class="section" id="les-fields-parametres">
+<h3>Les fields: paramètres<a class="headerlink" href="#les-fields-parametres" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>verbose_name</li>
+<li>default</li>
+<li>null/blank</li>
+<li>help_text</li>
+<li>choices</li>
+<li>validators</li>
+<li>db_column</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="les-metadatas">
+<h3>Les métadatas<a class="headerlink" href="#les-metadatas" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>db_table</li>
+<li>permissions</li>
+<li>verbose_name</li>
+<li>app_label</li>
+<li>ordering</li>
+<li>abstract</li>
+<li>proxy</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="demo">
+<h3>Démo<a class="headerlink" href="#demo" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-python"><pre>./manage.py shell</pre>
+</div>
+</div>
+</div>
+<div class="section" id="vue">
+<h2>Vue<a class="headerlink" href="#vue" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="les-fonctions-views">
+<h3>Les fonctions views<a class="headerlink" href="#les-fonctions-views" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="l-objet-request">
+<h3>L&#8217;objet request<a class="headerlink" href="#l-objet-request" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+</div>
+<div class="section" id="template">
+<h2>Template<a class="headerlink" href="#template" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="l-heritage">
+<h3>L&#8217;héritage<a class="headerlink" href="#l-heritage" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="les-limitations">
+<h3>Les limitations<a class="headerlink" href="#les-limitations" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="les-templates-tags">
+<h3>Les templates tags<a class="headerlink" href="#les-templates-tags" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="les-filters">
+<h3>Les filters<a class="headerlink" href="#les-filters" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+</div>
+<div class="section" id="formulaires">
+<h2>Formulaires<a class="headerlink" href="#formulaires" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="modelform">
+<h3>ModelForm.<a class="headerlink" href="#modelform" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="id3">
+<h3>Formulaires.<a class="headerlink" href="#id3" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="validation-et-autre">
+<h3>Validation et autre.<a class="headerlink" href="#validation-et-autre" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="tp">
+<h3>TP<a class="headerlink" href="#tp" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="correction">
+<h3>Correction<a class="headerlink" href="#correction" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table des matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django MTV, django pour les dévelopeurs</a><ul>
+<li><a class="reference internal" href="#l-architechture-logicielle">L&#8217;architechture logicielle</a></li>
+<li><a class="reference internal" href="#fichiers-du-projet">Fichiers du projet</a><ul>
+<li><a class="reference internal" href="#base">Base</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#media">Media</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gestion-du-projet">Gestion du projet</a><ul>
+<li><a class="reference internal" href="#settings-py">settings.py</a></li>
+<li><a class="reference internal" href="#urls-py">urls.py</a></li>
+<li><a class="reference internal" href="#manage-py">manage.py</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#les-modeles">les Modèles</a><ul>
+<li><a class="reference internal" href="#les-backends">Les Backends</a></li>
+<li><a class="reference internal" href="#la-philosophie">La philosophie</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#les-fields">Les fields</a></li>
+<li><a class="reference internal" href="#les-fields-parametres">Les fields: paramètres</a></li>
+<li><a class="reference internal" href="#les-metadatas">Les métadatas</a></li>
+<li><a class="reference internal" href="#id1">Example</a></li>
+<li><a class="reference internal" href="#demo">Démo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vue">Vue</a><ul>
+<li><a class="reference internal" href="#les-fonctions-views">Les fonctions views</a></li>
+<li><a class="reference internal" href="#l-objet-request">L&#8217;objet request</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#template">Template</a><ul>
+<li><a class="reference internal" href="#l-heritage">L&#8217;héritage</a></li>
+<li><a class="reference internal" href="#les-limitations">Les limitations</a></li>
+<li><a class="reference internal" href="#les-templates-tags">Les templates tags</a></li>
+<li><a class="reference internal" href="#les-filters">Les filters</a></li>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#formulaires">Formulaires</a><ul>
+<li><a class="reference internal" href="#modelform">ModelForm.</a></li>
+<li><a class="reference internal" href="#id3">Formulaires.</a></li>
+<li><a class="reference internal" href="#validation-et-autre">Validation et autre.</a></li>
+<li><a class="reference internal" href="#tp">TP</a></li>
+<li><a class="reference internal" href="#correction">Correction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="index.html"
+                        title="Chapitre précédent">Présentations</a></p>
+  <h3>Cette page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/presentations/django_mtv.txt"
+           rel="nofollow">Montrer la source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Recherche rapide</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Présentations"
+             >précédent</a> |</li>
+        <li><a href="../index.html">Django de Zéro 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Présentations</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christophe Narbonne.
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
