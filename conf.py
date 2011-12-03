@@ -258,7 +258,8 @@ texinfo_documents = [
 # regardless of the global pdf_compressed setting.
 
 pdf_documents = [
-    ('index', u'MyProject', u'My Project', u'Author Name'),
+    ('presentations/django_mtv', u'Django_Mtv', u'Django, L\'architecture',
+     u'Christophe Narbonne'),
 ]
 
 # A comma-separated list of custom stylesheets. Example:
@@ -273,7 +274,7 @@ pdf_compressed = True
 # pdf_font_path = ['/usr/share/fonts', '/usr/share/texmf-dist/fonts/']
 
 # Language to be used for hyphenation support
-#pdf_language = "fr_FR"
+pdf_language = "fr_FR"
 
 # Mode for literal blocks wider than the frame. Can be
 # overflow, shrink or truncate
@@ -325,7 +326,7 @@ pdf_extensions = ['vectorpdf']
 #pdf_page_template = 'cutePage'
 
 # Show Table Of Contents at the beginning?
-#pdf_use_toc = True
+pdf_use_toc = False
 
 # How many levels deep should the table of contents be?
 pdf_toc_depth = 9999
