@@ -1,14 +1,10 @@
-.. raw:: pdf
-
-    PageBreak
-
 ========================================
 Django MTV, django pour les dévelopeurs
 ========================================
 .. warning::
 
-    La Documentation en ligne et la veille technologique seront un point
-    central de votre workflow
+    La Documentation en ligne et la veille technologique : un point
+    central du workflow!
 
 .. raw:: pdf
 
@@ -238,7 +234,7 @@ Les fields
   - OneToOneField
   - ManyToManyField
 
-`https://docs.djangoproject.com/en/dev/ref/models/fields/#field-types`_
+`Documentation <https://docs.djangoproject.com/en/dev/ref/models/fields/#field-types>`_
 
 .. raw:: pdf
 
