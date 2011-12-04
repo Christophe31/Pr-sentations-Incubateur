@@ -263,7 +263,12 @@ pdf_documents = [
 ]
 
 # A comma-separated list of custom stylesheets. Example:
-pdf_stylesheets = ['sphinx','kerning','a4', 'presentation']
+pdf_stylesheets = [
+    'fruity',
+#    'kerning',
+#    'a4',
+    'presentation',
+]
 
 # Create a compressed PDF
 # Use True/False or 1/0

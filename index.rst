@@ -3,22 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Django de Zéro's documentation!
-==========================================
+Bienvenue à Django de Zéro's documentation!
+###########################################
 
-Contents:
+Sommaire:
 
 .. toctree::
    :maxdepth: 2
 
+   README
    presentations/index
 
 
 
-Indices and tables
-==================
+Infos générées (sphinx)
+#######################
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
