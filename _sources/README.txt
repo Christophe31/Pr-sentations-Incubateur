@@ -6,6 +6,15 @@ Ce répo est destiné au versionnement des supports de présentation et
 d'initiation aux technologies Python et Django dans le cadre de l'incubateur
 Toulousain à Supinfo Toulouse.
 
+Christophe Narbonne, étudiant en dernière année de SUPINFO sur le campus de
+Toulouse est arrivé à SUPINFO avec déjà un gout pour le Python. Après quelques
+infidélités il s'est refocalisé dessus depuis maintenant près de 3 ans. Avec 2
+ans de Python en entreprise pour des sociétés telles que Makina Corpus ou Atoll
+Design et un an à faire du django au sein de Clarisys Informatique puis Groupe
+Éclipse Technologie. Il a découvert un certain nombre de frameworks webs en
+surface et propose son retour d'experience sur le plus complet, le plus en
+vogue et le plus interessant d'entre eux.
+
 Les présentations seront données publiquement et les support seront ajoutés au
 fur et à mesure.
 
