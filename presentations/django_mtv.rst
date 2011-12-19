@@ -1,10 +1,13 @@
-========================================
 Django MTV, django pour les dévelopeurs
-========================================
+########################################
+
 .. warning::
 
-    La Documentation en ligne et la veille technologique : un point
-    central du workflow!
+     + Veille technologique
+
+     + Peu d'assistance comparé aux langage à typage statique.
+
+     + Documentation en ligne
 
 .. raw:: pdf
 
@@ -13,22 +16,136 @@ Django MTV, django pour les dévelopeurs
 L'architechture logicielle
 ##########################
 
-+------------+----------+
-|  *MVC*     | *Django* |
-+============+==========+
-| Model      | Model    |
-+------------+----------+
-| View       | Template |
-+------------+----------+
-| Controler  | View     |
-+------------+----------+
++------------+----------+---------------------+
+|  *MVC*     | *Django* |  `*N-tiers*`        |
++============+==========+=====================+
+| Model      | Model    | DAL (+- Business)   |
++------------+----------+---------------------+
+| View       | Template | Presentation GUI    |
++------------+----------+---------------------+
+| Controler  | View     | Presentation Logic  |
++------------+----------+---------------------+
 
 .. raw:: pdf
 
     PageBreak
 
-Fichiers du projet
-##################
+Parcour de la requête
+#####################
+
+.. digraph:: G
+    :scale:50%
+
+    graph [fontsize=11];
+    edge  [fontsize=10];
+    node  [fontsize=10];
+    ranksep = 0.3;
+    nodesep = .05;
+    size = "2.0,3.5"
+    edge [style="setlinewidth(1)"];
+    node [style="setlinewidth(1)"];
+    subgraph cluster_server{
+        label="site django";
+        Core [shape=doublecircle];
+        Modèle [shape=folder];
+        Template [shape=note];
+        Core -> URL_conf [label=URL];
+        URL_conf -> Core [label=Vue];
+        Core -> Vue [label=request];
+        Vue -> Modèle [dir=both];
+        Vue -> Template [dir=both];
+        Vue -> Core [label=responce];
+    }
+    Client -> Core  [label=HTTP, dir=both];
+
+.. raw:: pdf
+
+    PageBreak
+
+Configuration
+-------------
+
+.. image:: /_static/BurnTheWhitch.jpg
+
+.. raw:: pdf
+
+    PageBreak
+
+Gestion du projet
+#################
+
+Keep It Stupid Simple
+
+.. raw:: pdf
+
+    PageBreak
+
+Gestion du projet
+#################
+
+::
+
+    django-admin.py startproject <project_name>
+
+.. raw:: pdf
+
+    PageBreak
+
+settings.py
+-----------
+
+::
+
+    DEBUG
+    DATABASES
+    {MEDIA/STATIC}_ROOT
+    {MEDIA/STATIC}_URL
+    INSTALLED_APPS
+    ROOT_URLCONF
+    SECRET_KEY
+    MIDDLEWARE_CLASSES
+    TEMPLATE_CONTEXT_PROCESSORS
+    TEMPLATE_DIRS
+    LOGGING
+
+.. raw:: pdf
+
+    PageBreak
+
+urls.py
+-------
+
+::
+
+    from django.conf.urls.defaults import patterns, include, url
+    from django.conf import settings
+
+    urlpatterns = patterns('',
+        url(r'^my_module$', include('my_module.urls')),)
+
+    if settings.DEBUG:
+        urlpatterns += patterns('',
+            url(r'^media/(?P<path>.*)$', 'django.views.static.serve', { #*
+                'document_root': settings.MEDIA_ROOT,})
+        from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+        urlpatterns += staticfiles_urlpatterns()
+
+.. raw:: pdf
+
+    PageBreak
+
+manage.py
+---------
+
+::
+
+    ./manage.py startapp <app_name>  # Nouveau dossier d'application
+    ./manage.py runserver  # lance server de dev
+    ./manage.py shell  # shell python local
+    ./manage.py syncdb  # génère la DB à partir des classes
+    ./manage.py inspectdb  # génère des classes à partir de la DB
+    ./manage.py dbshell  # shell SQL
+    ./manage.py help
 
 .. raw:: pdf
 
@@ -101,76 +218,6 @@ Media
 
     PageBreak
 
-Gestion du projet
-#################
-
-::
-
-    django-admin.py startproject <project_name>
-
-.. raw:: pdf
-
-    PageBreak
-
-settings.py
------------
-
-::
-
-    DEBUG
-    DATABASES
-    {MEDIA/STATIC}_ROOT
-    {MEDIA/STATIC}_URL
-    INSTALLED_APPS
-    ROOT_URLCONF
-    SECRET_KEY
-    MIDDLEWARE_CLASSES
-    TEMPLATE_CONTEXT_PROCESSORS
-    TEMPLATE_DIRS
-    LOGGING
-
-.. raw:: pdf
-
-    PageBreak
-
-urls.py
--------
-
-::
-
-    from django.conf.urls.defaults import patterns, include, url
-    from django.conf import settings
-
-    urlpatterns = patterns('',
-        url(r'^my_module$', include('my_module.urls')),)
-
-    if settings.DEBUG:
-        urlpatterns += patterns('',
-            url(r'^media/(?P<path>.*)$', 'django.views.static.serve', { #*
-                'document_root': settings.MEDIA_ROOT,})
-        from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-        urlpatterns += staticfiles_urlpatterns()
-
-.. raw:: pdf
-
-    PageBreak
-
-manage.py
----------
-::
-
-    ./manage.py syncdb
-    ./manage.py runserver
-    ./manage.py startapp <app_name>
-    ./manage.py inspectdb
-    ./manage.py shell
-    ./manage.py dbshell
-    ./manage.py help
-
-.. raw:: pdf
-
-    PageBreak
-
 les Modèles
 ###########
 
@@ -193,7 +240,7 @@ Les Backends
     - SQL Server
     - Sybase
 
-..note::
+.. note::
 
     Tant que les regex et le SQL brut ne sont pas utilisés, les backends sont
     interchangeables
@@ -272,7 +319,6 @@ Les métadatas
 
 Example
 -------
-
 
 .. raw:: pdf
 
@@ -356,6 +402,7 @@ Example
 
 Formulaires
 ###########
+
 ModelForm.
 ----------
 
@@ -377,16 +424,19 @@ Validation et autre.
 
     PageBreak
 
-TP
----
+Bibliothèques externes
+######################
+
+Does this need to be in the core?
 
 .. raw:: pdf
 
     PageBreak
 
-Correction
-----------
+Poneys
+######
 
-.. raw:: pdf
+Django is made of magic ponies
 
-    PageBreak
+.. image:: /_static/awesome_rainbow_pony.png
+
